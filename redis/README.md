@@ -94,3 +94,19 @@ Write Around 전략은 쓰기 작업(저장, 수정, 삭제)을 캐시에는 반
 ## 캐싱으로 조회 성능 개선을 하기 전 SQL 튜닝을 먼저 고려
 - 추가적인 시스템 구축은 금전적, 시간적 비용이 추가적으로 발생.  
 - SQL 자체가 비효율적으로 작성됐다면 아무리 시스템적으로 성능을 개선한다고 하더라도 한계가 있다.
+
+## 서버 부하테스트
+- k6 스크립트 작성
+```javascript
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export default function () {
+  http.get('http://13.125.227.183:8080/boards');
+}
+```
+    
+- k6 스크립트 실행 명령어  
+k6 run --vus 30 --duration 10s script.js
+- --vus 30: 가상 유저(Virtual Users)를 30명으로 설정
+- --duration 10s: 지속 시간을 10초로 설정
