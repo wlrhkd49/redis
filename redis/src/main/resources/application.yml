@@ -13,3 +13,14 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  # Redis Configuration
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# Redis ??? ?? ?? ?? ??
+logging:
+  level:
+    org.springframework.cache: trace
